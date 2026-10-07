@@ -54,7 +54,7 @@
       "sha256": "b07178da3e35e293e66f606745be7280ddab2144b3064d1d008a70bd6371fcd6"
     }
   },
-  "licenseFileSha256": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414eff7dfb2f07ef",
+  "licenseFileSha256": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef",
   "sourceArchive": {
     "name": "proxifyre-v2.6.1-source.zip",
     "sha256": "501f8ac27ed2a53a2979bdac86b051615aba13ec7409975a82aa1c8a9c5e90e9",
