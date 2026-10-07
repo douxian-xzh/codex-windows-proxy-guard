@@ -19,3 +19,17 @@
 /desktop.ini
 Thumbs.db
 .DS_Store
+
+# Workspace-only engine build products and superseded helper scripts
+/third_party/ProxiFyre-v2.6.1/EnginePayload/ProxiFyre.exe
+/third_party/ProxiFyre-v2.6.1/EnginePayload/socksify.dll
+/third_party/ProxiFyre-v2.6.1/ProxiFyre-2.6.1-win-x64-setup.exe
+/third_party/ProxiFyre-v2.6.1/ProxiFyre-2.6.1-win-x64-setup.exe.sha256
+/third_party/ProxiFyre-v2.6.1/source-overlay/
+/third_party/ProxiFyre-v2.6.1-official-x64/ProxiFyre-v2.6.1-x64.zip
+/third_party/ProxiFyre-v2.6.1-official-x64/ProxiFyre-v2.6.1-x64.zip.sha256
+/third_party/ProxiFyre-v2.6.1-official-x64/EnginePayload/*
+!/third_party/ProxiFyre-v2.6.1-official-x64/EnginePayload/ProxiFyre.exe
+!/third_party/ProxiFyre-v2.6.1-official-x64/EnginePayload/socksify.dll
+/tools/Render-UiPreview.ps1
+/tools/Write-AcceptanceAudit.ps1
