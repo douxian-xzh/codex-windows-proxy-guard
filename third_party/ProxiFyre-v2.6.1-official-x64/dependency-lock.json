@@ -1,0 +1,69 @@
+{
+  "repository": "https://github.com/wiresock/proxifyre",
+  "tag": "v2.6.1",
+  "commit": "e04e7decd6ce4926580dc3c8d2078e32071a2091",
+  "architecture": "x64",
+  "license": "AGPL-3.0-only",
+  "releasePublishedUtc": "2026-09-10T05:22:53Z",
+  "assets": [
+    {
+      "name": "ProxiFyre-2.6.1-win-x64-setup.exe",
+      "size": 2881494,
+      "sha256": "c08cbb5c15acd04d77d7c330712ae366d2a9a8e2a290586e8fe9aa73c78a1908",
+      "role": "online installer"
+    },
+    {
+      "name": "ProxiFyre-2.6.1-win-x64-setup.exe.sha256",
+      "size": 100,
+      "sha256": "f2c07df00da167428f0f667a19ef0c92406b2134e9e2238de18c54dc83b98d1d",
+      "role": "publisher checksum sidecar"
+    },
+    {
+      "name": "ProxiFyre-2.6.1-win-x64.msi",
+      "size": 1794048,
+      "sha256": "39e1831954c4d5b2d61edd8d91a3114baada31ddf484ee2110a1d9a8ba593623",
+      "role": "standalone MSI; not used by the manager"
+    },
+    {
+      "name": "ProxiFyre-v2.6.1-x64.zip",
+      "size": 1858699,
+      "sha256": "86b81504d49194e002acae5c4de7e2e84a79b087cbe1669255bb510e4072abef",
+      "role": "official runtime payload archive"
+    },
+    {
+      "name": "ProxiFyre-v2.6.1-x64.zip.sha256",
+      "size": 91,
+      "sha256": "f976dbf25014714ebf4b5a33663237d305245045d2308ad0cfa35f6f41660bde",
+      "role": "publisher checksum sidecar"
+    }
+  ],
+  "payloadFiles": {
+    "ProxiFyre.exe": {
+      "fileVersion": "2.6.1",
+      "size": 105984,
+      "sha256": "b317381d7f61af1c5a697c0de32c7743869843fbf52dd1805e9ebd1a5612741e"
+    },
+    "socksify.dll": {
+      "fileVersion": "2.6.1",
+      "size": 1831936,
+      "sha256": "9c5680a36cc818e4e11a1d05ff621dcc5f917d14fe36f3405185228dbed70598"
+    },
+    "ProxiFyre.Configuration.dll": {
+      "fileVersion": "2.6.1",
+      "size": 55296,
+      "sha256": "b07178da3e35e293e66f606745be7280ddab2144b3064d1d008a70bd6371fcd6"
+    }
+  },
+  "licenseFileSha256": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414eff7dfb2f07ef",
+  "sourceArchive": {
+    "name": "proxifyre-v2.6.1-source.zip",
+    "sha256": "501f8ac27ed2a53a2979bdac86b051615aba13ec7409975a82aa1c8a9c5e90e9",
+    "source": "GitHub tag v2.6.1 source snapshot; no local overlay included"
+  },
+  "verification": {
+    "releaseMetadataSource": "https://api.github.com/repos/wiresock/proxifyre/releases/tags/v2.6.1",
+    "tagCommitSource": "git ls-remote refs/tags/v2.6.1^{}",
+    "verifiedUtc": "2026-10-06T17:48:53Z",
+    "binarySignature": "Official setup and runtime binaries are unsigned; SHA-256 provenance does not authenticate publisher identity."
+  }
+}

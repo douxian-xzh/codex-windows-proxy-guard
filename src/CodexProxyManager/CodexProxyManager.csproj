@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <SelfContained>false</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>Codex代理管理器_v1.6</AssemblyName>
+    <RootNamespace>CodexProxyManager</RootNamespace>
+    <AssemblyTitle>Codex 代理管理器</AssemblyTitle>
+    <Product>Codex 代理管理器</Product>
+    <Version>1.6.0</Version>
+    <AssemblyVersion>1.6.0.0</AssemblyVersion>
+    <FileVersion>1.6.0.0</FileVersion>
+    <InformationalVersion>1.6.0</InformationalVersion>
+    <ApplicationIcon>Assets/App.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Resource Include="Assets/App.ico"/>
+    <Resource Include="Assets/App.png"/>
+    <Resource Include="Assets/Tray.ico"/>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\third_party\ProxiFyre-v2.6.1\EnginePayload\ProxiFyre-2.6.1-win-x64-setup.exe" Link="EnginePayload\ProxiFyre-2.6.1-win-x64-setup.exe" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+    <Content Include="..\..\third_party\ProxiFyre-v2.6.1\EnginePayload\ProxiFyre-2.6.1-win-x64-setup.exe.sha256" Link="EnginePayload\ProxiFyre-2.6.1-win-x64-setup.exe.sha256" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+    <Content Include="..\..\third_party\ProxiFyre-v2.6.1-official-x64\EnginePayload\ProxiFyre.exe" Link="EnginePayload\ProxiFyre.exe" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+    <Content Include="..\..\third_party\ProxiFyre-v2.6.1-official-x64\EnginePayload\socksify.dll" Link="EnginePayload\socksify.dll" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+    <Content Include="..\..\third_party\ProxiFyre-v2.6.1\LICENSE" Link="EnginePayload\Source\LICENSE" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+    <Content Include="..\..\third_party\ProxiFyre-v2.6.1\README.md" Link="EnginePayload\Source\README.md" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+    <Content Include="..\..\third_party\ProxiFyre-v2.6.1\proxifyre-v2.6.1-source.zip" Link="EnginePayload\Source\proxifyre-v2.6.1-source.zip" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+    <Content Include="..\..\third_party\ProxiFyre-v2.6.1-official-x64\dependency-lock.json" Link="EnginePayload\Source\dependency-lock.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+  </ItemGroup>
+</Project>
+
+
+

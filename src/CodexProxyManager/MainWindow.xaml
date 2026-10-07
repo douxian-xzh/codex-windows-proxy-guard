@@ -1,0 +1,71 @@
+<Window x:Class="CodexProxyManager.MainWindow"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ Title="Codex 代理管理器 · v1.6 by 豆馅" Width="1000" Height="820" MinWidth="740" MinHeight="480"
+ Icon="Assets/App.ico" WindowStartupLocation="CenterScreen" Background="{DynamicResource PageBrush}" Foreground="{DynamicResource TextBrush}"
+ FontFamily="Microsoft YaHei UI" FontSize="13" UseLayoutRounding="True" SnapsToDevicePixels="True"
+ Closing="Window_Closing" StateChanged="Window_StateChanged">
+<Window.Resources>
+ <Style x:Key="HomeCard" TargetType="Border"><Setter Property="Background" Value="{DynamicResource CardBrush}"/><Setter Property="BorderBrush" Value="{DynamicResource BorderBrushSoft}"/><Setter Property="BorderThickness" Value="1"/><Setter Property="CornerRadius" Value="14"/><Setter Property="Padding" Value="16"/></Style>
+ <Style x:Key="SectionLabel" TargetType="TextBlock" BasedOn="{StaticResource MutedText}"><Setter Property="FontSize" Value="12"/><Setter Property="Margin" Value="0,0,0,6"/></Style>
+</Window.Resources>
+<Grid Margin="24,20,24,12">
+ <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+ <Grid Margin="0,0,0,14">
+  <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+  <Image Source="Assets/App.png" Width="42" Height="42" Margin="0,0,12,0" RenderOptions.BitmapScalingMode="HighQuality"/>
+  <StackPanel Grid.Column="1" VerticalAlignment="Center"><TextBlock x:Name="HeaderTitleText" Text="Codex 代理管理器" FontSize="21" FontWeight="SemiBold"/><TextBlock x:Name="HeaderDescriptionText" Text="无感透明代理 · v1.6" Style="{StaticResource MutedText}" FontSize="11"/></StackPanel>
+  <Button Grid.Column="2" x:Name="ThemeButton" Click="ThemeButton_Click" ToolTip="切换浅色 / 深色主题" AutomationProperties.Name="切换明暗主题" VerticalAlignment="Center"><StackPanel Orientation="Horizontal"><TextBlock x:Name="ThemeGlyphText" Text="&#xE708;" Style="{StaticResource Glyph}"/><TextBlock x:Name="ThemeButtonText" Text="深色外观"/></StackPanel></Button>
+ </Grid>
+ <ScrollViewer x:Name="MainScroller" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="0,0,8,0">
+ <StackPanel>
+  <Border x:Name="ProtectionBanner" Style="{StaticResource HomeCard}" Background="{DynamicResource SurfaceBrush}" Padding="20,16" Margin="0,0,0,12">
+   <StackPanel>
+    <StackPanel Orientation="Horizontal" Margin="0,0,0,6"><Ellipse x:Name="ProtectionIndicator" Width="8" Height="8" Fill="{DynamicResource MutedBrush}" VerticalAlignment="Center" Margin="0,0,8,0"/><TextBlock Text="后台保护" Style="{StaticResource MutedText}" FontSize="12"/></StackPanel>
+    <TextBlock x:Name="RouteStatusText" Text="正在读取保护状态" FontSize="26" FontWeight="SemiBold" TextWrapping="Wrap"/>
+    <TextBlock x:Name="LastRefreshText" Text="正在检查后台组件，请稍候。" Style="{StaticResource MutedText}" Margin="0,8,0,10"/>
+    <WrapPanel>
+     <Button x:Name="ApplyProxyProtectionButton" Click="ApplyProxyProtection_Click" Style="{StaticResource PrimaryButton}" Margin="0,0,8,8" ToolTip="验证代理后通过管理员授权准备保护；运行中的 Codex 会话不会被自动关闭。"><StackPanel Orientation="Horizontal"><TextBlock Text="&#xE7C3;" Style="{StaticResource Glyph}"/><TextBlock Text="准备 / 修复保护" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/></StackPanel></Button>
+     <Button x:Name="StartButton" Click="StartButton_Click" Margin="0,0,8,8" ToolTip="通过 Windows 正常入口打开应用；代理保护由后台独立提供。"><StackPanel Orientation="Horizontal"><TextBlock Text="&#xE768;" Style="{StaticResource Glyph}"/><TextBlock Text="打开 Codex"/></StackPanel></Button>
+     <Button x:Name="UpdateGuardianButton" Click="UpdateGuardian_Click" Margin="0,0,8,8" ToolTip="升级并交接本产品后台；保留正在运行的转发服务和客户端。"><TextBlock Text="更新后台"/></Button>
+     <Button Click="Refresh_Click" Margin="0,0,8,8"><StackPanel Orientation="Horizontal"><TextBlock Text="&#xE72C;" Style="{StaticResource Glyph}"/><TextBlock Text="重新检测"/></StackPanel></Button>
+     <Button Click="ExportDiagnostics_Click" Margin="0,0,0,8" ToolTip="导出脱敏的后台与网络诊断"><TextBlock Text="导出诊断"/></Button>
+     <Button x:Name="CancelProbeButton" Click="CancelProbe_Click" Visibility="Collapsed" Margin="0,0,0,8"><TextBlock Text="取消检测"/></Button>
+    </WrapPanel>
+    <TextBlock x:Name="OperationProgressText" Text="{Binding Text, ElementName=ProbeResultText}" Visibility="Collapsed" Style="{StaticResource MutedText}" FontSize="12" Margin="0,0,0,8"/>
+    <Border BorderBrush="{DynamicResource BorderBrushSoft}" BorderThickness="0,1,0,0" Margin="0,6,0,0" Padding="0,10,0,0"><StackPanel><CheckBox x:Name="StartupCheckBox" Content="Windows 登录后自动准备保护" Checked="StartupCheckBox_Changed" Unchecked="StartupCheckBox_Changed" ToolTip="首次启用需要管理员授权；由独立后台运行，无需打开此界面。"/><TextBlock x:Name="ProtectionContinuityText" Text="后台守护与代理服务正常时，退出界面后保护仍会继续。" Style="{StaticResource MutedText}" FontSize="12" Margin="28,6,0,0"/></StackPanel></Border>
+   </StackPanel>
+  </Border>
+  <Grid Margin="0,0,0,12"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+   <Border Style="{StaticResource HomeCard}" Margin="0,0,6,0"><StackPanel><TextBlock Text="Codex / ChatGPT" Style="{StaticResource SectionLabel}"/><TextBlock x:Name="AppStatusText" Text="正在检测" FontSize="18" FontWeight="SemiBold"/><TextBlock x:Name="TargetInfoText" Text="正在查找已安装的应用" Style="{StaticResource MutedText}" FontSize="12" Margin="0,5,0,0"/><TextBlock x:Name="ProcessSummaryText" Text="" Style="{StaticResource MutedText}" FontSize="12"/></StackPanel></Border>
+   <Border Grid.Column="1" Style="{StaticResource HomeCard}" Margin="6,0,0,0"><StackPanel><TextBlock x:Name="ProxyCardLabelText" Text="代理地址" Style="{StaticResource SectionLabel}"/><TextBlock x:Name="ProxyStatusText" Text="正在读取" FontSize="18" FontWeight="SemiBold" TextWrapping="Wrap"/><TextBlock x:Name="ProxySourceText" Text="尚未验证" Style="{StaticResource MutedText}" FontSize="12" Margin="0,5,0,0"/><TextBlock Text="可在下方连接设置中修改" Style="{StaticResource MutedText}" FontSize="12"/></StackPanel></Border>
+  </Grid>
+  <Expander x:Name="ProxySection" IsExpanded="False" Expanded="SectionExpansionChanged" Collapsed="SectionExpansionChanged" Header="连接设置" AutomationProperties.Name="连接设置"><StackPanel>
+   <TextBlock x:Name="ProxyInputTitleText" Text="填写代理地址，或从 Windows 当前设置读取；支持本机与局域网代理。" Style="{StaticResource MutedText}" Margin="0,0,0,12"/>
+   <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="100"/></Grid.ColumnDefinitions><StackPanel Margin="0,0,12,0"><TextBlock x:Name="ProxyFieldLabelText" Text="IP / 主机名" Style="{StaticResource SectionLabel}"/><TextBox x:Name="ProxyHostBox" TextChanged="ProxyInput_Changed" AutomationProperties.Name="代理 IP 或主机名"/></StackPanel><StackPanel Grid.Column="1"><TextBlock Text="端口" Style="{StaticResource SectionLabel}"/><TextBox x:Name="ProxyPortBox" TextChanged="ProxyInput_Changed" AutomationProperties.Name="代理端口"/></StackPanel></Grid>
+   <WrapPanel Margin="0,12,0,0"><Button x:Name="SaveProxyButton" Click="SaveProxy_Click" Style="{StaticResource PrimaryButton}" Margin="0,0,8,8"><TextBlock Text="保存设置" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/></Button><Button x:Name="ReloadSystemProxyButton" Click="ReloadSystemProxy_Click" Margin="0,0,8,8"><TextBlock Text="读取系统代理"/></Button><Button x:Name="ProbeProxyButton" Click="ProbeProxy_Click" Margin="0,0,8,8" ToolTip="检测 SOCKS5 / HTTP 协议与 TLS；候选地址不会自动保存。"><TextBlock Text="检测代理"/></Button></WrapPanel>
+   <TextBlock x:Name="ProxyEditHintText" Text="保存地址后，点击上方“准备 / 修复保护”应用。" Style="{StaticResource MutedText}" FontSize="12" Margin="0,4,0,0"/><TextBlock x:Name="ProbeResultText" Text="尚未检测；透明代理需要支持 SOCKS5 的端口。" Style="{StaticResource MutedText}" FontSize="12" Margin="0,6,0,0"/>
+  </StackPanel></Expander>
+  <Expander x:Name="AdvancedSection" IsExpanded="False" Expanded="SectionExpansionChanged" Collapsed="SectionExpansionChanged" Header="高级诊断" AutomationProperties.Name="高级诊断"><StackPanel>
+   <TextBlock Text="查看后台组件、连接证据与事件日志，协助定位问题。" Style="{StaticResource MutedText}" FontSize="12" Margin="0,0,0,12"/>
+   <Expander x:Name="OverviewSection" IsExpanded="True" Expanded="SectionExpansionChanged" Collapsed="SectionExpansionChanged" Header="保护与客户端验证" AutomationProperties.Name="保护与客户端验证"><StackPanel>
+    <TextBlock x:Name="LauncherStatusText" Text="后台状态尚未确认" Style="{StaticResource MutedText}" FontSize="12"/><TextBlock x:Name="ProtectionDetailsText" Text="等待后台、代理与规则状态" Style="{StaticResource MutedText}" FontSize="12" Margin="0,8,0,0"/><TextBlock x:Name="ProxyModeStatusText" Text="ProxiFyre 2.6.1 · SOCKS5" FontSize="12" Margin="0,8,0,0"/><TextBlock x:Name="ProxyModeDetailText" Text="已核验客户端及后台缓存的具体路径；共享工具进程不自动加入" Style="{StaticResource MutedText}" FontSize="12"/><TextBlock x:Name="ClientValidationText" Text="Responses WSS：NotTested · Remote Control：NotTested" Style="{StaticResource MutedText}" FontSize="12" Margin="0,8,0,0"/><TextBlock Text="后台就绪不代表真实客户端验收通过；HTTPS/SSE 回退会记为 Fallback。" Style="{StaticResource MutedText}" FontSize="12" Margin="0,6,0,0"/>
+   </StackPanel></Expander>
+   <Expander x:Name="ApplicationSection" IsExpanded="False" Expanded="SectionExpansionChanged" Collapsed="SectionExpansionChanged" Header="应用身份与规则范围" AutomationProperties.Name="应用身份与规则范围"><StackPanel>
+    <ComboBox x:Name="TargetChoiceCombo" DisplayMemberPath="Label" SelectionChanged="TargetChoice_Changed" Visibility="Collapsed" Margin="0,0,0,8" HorizontalAlignment="Stretch" AutomationProperties.Name="选择 ChatGPT 安装包"/><TextBlock x:Name="ScopeSummaryText" Text="等待发现安装位置与规则范围" Style="{StaticResource MutedText}" FontSize="12"/>
+    <WrapPanel Margin="0,12,0,0"><Button x:Name="StopButton" Click="StopButton_Click" Style="{StaticResource DangerButton}" Margin="0,0,8,8"><TextBlock Text="关闭 Codex 应用" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/></Button><Button x:Name="StopProxyServiceButton" Click="StopProxyService_Click" Margin="0,0,0,8" ToolTip="停止受管理的代理服务会中断保护，需要用户确认。"><TextBlock Text="停止后台代理服务"/></Button></WrapPanel>
+   </StackPanel></Expander>
+   <Expander x:Name="ConnectionsSection" IsExpanded="False" Expanded="SectionExpansionChanged" Collapsed="SectionExpansionChanged" Header="进程与连接观察" AutomationProperties.Name="进程与连接观察"><StackPanel>
+    <TextBlock x:Name="ConnectionExplanationText" Text="套接字快照显示原始端点，不能单独证明代理出口。" Style="{StaticResource MutedText}" FontSize="12"/><TextBlock x:Name="ConnectionCountText" Text="0 条连接" Foreground="{DynamicResource AccentTextBrush}" FontSize="12" Margin="0,6,0,10"/>
+    <DataGrid x:Name="ConnectionGrid" Height="220" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserReorderColumns="True" CanUserDeleteRows="False" EnableRowVirtualization="True" EnableColumnVirtualization="True" SelectionMode="Single"><DataGrid.Columns><DataGridTextColumn Header="进程" Binding="{Binding ProcessName}" Width="130"/><DataGridTextColumn Header="PID" Binding="{Binding ProcessId}" Width="70"/><DataGridTextColumn Header="协议" Binding="{Binding Protocol}" Width="60"/><DataGridTextColumn Header="套接字端点" Binding="{Binding Endpoint}" Width="300"/><DataGridTextColumn Header="状态" Binding="{Binding State}" Width="105"/><DataGridTextColumn Header="判断" Binding="{Binding Route}" Width="130"/><DataGridTextColumn Header="首次 / 最近观察" Binding="{Binding ObservedTime}" Width="155"/><DataGridTextColumn Header="判断依据" Binding="{Binding Evidence}" Width="360"/></DataGrid.Columns></DataGrid>
+   </StackPanel></Expander>
+   <Expander x:Name="EventsSection" IsExpanded="False" Expanded="SectionExpansionChanged" Collapsed="SectionExpansionChanged" Header="日志与诊断证据" AutomationProperties.Name="日志与诊断证据"><StackPanel>
+    <WrapPanel Margin="0,0,0,8"><Button Click="ReadCodexLog_Click" Margin="0,0,8,8"><TextBlock Text="导入客户端日志"/></Button><Button Click="ClearLog_Click" Margin="0,0,0,8"><TextBlock Text="清空界面事件"/></Button></WrapPanel><TextBlock x:Name="CodexEvidenceText" Text="未导入客户端日志；Responses / Remote 未测试。" Style="{StaticResource MutedText}" FontSize="12" Margin="0,0,0,10"/><ListBox x:Name="LogList" Height="180" FontFamily="Cascadia Mono, Microsoft YaHei UI" FontSize="12" ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
+   </StackPanel></Expander>
+  </StackPanel></Expander>
+ </StackPanel></ScrollViewer>
+ <Grid Grid.Row="2" Margin="2,10,0,0"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock x:Name="FooterStatusText" Text="正在读取状态" Style="{StaticResource MutedText}" FontSize="11" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" Margin="0,0,12,0"/><TextBlock Grid.Column="1" x:Name="ModeBadgeText" Text="关闭窗口收起到托盘" Style="{StaticResource MutedText}" FontSize="11"/></Grid>
+</Grid>
+</Window>
+
+
+

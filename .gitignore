@@ -1,0 +1,21 @@
+# .NET and IDE output
+**/bin/
+**/obj/
+.vs/
+.idea/
+*.user
+*.suo
+*.cache
+
+# Local build, diagnostics, release artifacts and private working records
+/publish/
+/results/
+/文档/
+/STATE.json
+/CodexProxyManager-诊断-*.txt
+/codex-clipboard-*.png
+/ChatGPT-Proxy-Launcher.pyw
+/开发方案*.md
+/desktop.ini
+Thumbs.db
+.DS_Store
