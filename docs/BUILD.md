@@ -18,6 +18,6 @@ dotnet build src/CodexProxyManager/CodexProxyManager.csproj -c Release -r win-x6
 dotnet build src/CodexProxyGuardian/CodexProxyGuardian.csproj -c Release -r win-x64
 ```
 
-To publish the manager as a framework-dependent single-file WPF application and Guardian as a framework-dependent bundle, follow the `dotnet publish` commands in the root README. Do not publish the two projects independently as unrelated products: Guardian references the manager assembly, and the package also needs the pinned ProxiFyre support files and third-party notices.
+The commands above build the manager and Guardian for local development. A distributable package also needs the pinned ProxiFyre support files and third-party notices; do not publish the two projects independently as unrelated products because Guardian references the manager assembly.
 
 Published binaries need the .NET 10 Desktop Runtime x64 installed on the user's computer. The runtime is not bundled.
