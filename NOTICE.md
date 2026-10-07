@@ -10,7 +10,7 @@ The application bundles and/or installs the upstream `wiresock/proxifyre` releas
 - License: **GNU AGPL-3.0-only**. The upstream license and exact source snapshot are under `third_party/ProxiFyre-v2.6.1/`.
 - Release artifact hashes and provenance are recorded in `third_party/ProxiFyre-v2.6.1-official-x64/dependency-lock.json`.
 
-The license at the repository root applies to this project's original source and documentation only. It does not relicense ProxiFyre or other third-party files. Preserve each component's own copyright, license, and source notices when redistributing it. The official ProxiFyre setup/runtime files are unsigned; listed SHA-256 values identify bytes and are not publisher signatures.
+The MIT license at the repository root applies only to this project's original source and documentation. It does not relicense ProxiFyre or other third-party files. Preserve each component's own copyright, license, and source notices when redistributing it. The official ProxiFyre setup/runtime files are unsigned; listed SHA-256 values identify bytes and are not publisher signatures.
 
 Other tools/frameworks are referenced by their respective .NET target and project metadata. Microsoft .NET 10 Desktop Runtime is installed separately and is not bundled here.
 

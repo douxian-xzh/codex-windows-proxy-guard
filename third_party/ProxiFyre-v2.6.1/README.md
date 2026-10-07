@@ -7,7 +7,7 @@
 - Upstream source archive: `proxifyre-v2.6.1-source.zip`.
 - Release metadata and SHA-256 pins: `../ProxiFyre-v2.6.1-official-x64/dependency-lock.json`.
 
-The manager uses the upstream release setup bootstrapper and `ProxiFyre.exe` and `socksify.dll` from the matching x64 release payload. Their hashes are pinned in the dependency lock. These are separate upstream components; the repository's root license does not relicense them.
+The manager uses the upstream release setup bootstrapper and `ProxiFyre.exe` and `socksify.dll` from the matching x64 release payload. Their hashes are pinned in the dependency lock. These are separate upstream components; the repository's root MIT license does not relicense them.
 
 The upstream bootstrapper is unsigned and may install Windows Packet Filter and Visual C++ prerequisites. Windows may show an unknown-publisher warning. Review the upstream source and license before installing the engine.
 

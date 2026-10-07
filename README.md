@@ -53,7 +53,7 @@ The maintainer has reported successful normal use with v1.6 on their own device.
 
 ### Licensing
 
-The license for this project's original code and documentation is in the root [`LICENSE`](LICENSE) file. ProxiFyre is a separate third-party component under **GNU AGPL-3.0-only**; its license, source snapshot, and pinned release metadata are kept under [`third_party/`](third_party/) and described in [`NOTICE.md`](NOTICE.md). The root license does not change the terms for third-party components.
+The first-party manager, Guardian, and documentation are licensed under MIT; see the root [`LICENSE`](LICENSE). ProxiFyre is a separate third-party component under **GNU AGPL-3.0-only**; its license, source snapshot, and pinned release metadata are kept under [`third_party/`](third_party/) and described in [`NOTICE.md`](NOTICE.md). The root MIT license does not change the terms for third-party components.
 
 ## 简体中文
 
@@ -104,4 +104,4 @@ dotnet build src/CodexProxyGuardian/CodexProxyGuardian.csproj -c Release -r win-
 
 ### 许可证
 
-本项目原创代码和文档的许可证以仓库根目录 [`LICENSE`](LICENSE) 为准。ProxiFyre 是单独的第三方组件，使用 **GNU AGPL-3.0-only**；其许可证、源码快照和固定版本元数据位于 [`third_party/`](third_party/)，详情见 [`NOTICE.md`](NOTICE.md)。根目录许可证不会改变第三方组件的许可条款。
+本项目原创管理器、Guardian 和文档使用 MIT 许可证，见根目录 [`LICENSE`](LICENSE)。ProxiFyre 是单独的第三方组件，使用 **GNU AGPL-3.0-only**；其许可证、源码快照和固定版本元数据位于 [`third_party/`](third_party/)，详情见 [`NOTICE.md`](NOTICE.md)。根目录 MIT 许可证不会改变第三方组件的许可条款。
